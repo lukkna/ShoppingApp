@@ -1,0 +1,11 @@
+rootProject.name = 'shopping-app'
+
+include 'domain'
+include 'gateway:api'
+include 'gateway:implementation'
+include 'usecase:api'
+include 'usecase:implementation'
+include 'rest'
+include 'main'
+include 'utility'
+

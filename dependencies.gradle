@@ -1,0 +1,15 @@
+ext {
+    versions = [
+            spark  : '2.8.0',
+            jackson: '2.9.7',
+            h2     : "1.4.197",
+            log4j  : "2.11.1"
+    ]
+
+    deps = [
+            spark  : "com.sparkjava:spark-core:$versions.spark",
+            jackson: "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$versions.jackson",
+            h2     : "com.h2database:h2:$versions.h2",
+            log4j  : "org.apache.logging.log4j:log4j-slf4j-impl:$versions.log4j"
+    ]
+}

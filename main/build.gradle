@@ -1,0 +1,20 @@
+apply plugin: 'application'
+
+group 'eu.shopping.app'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':gateway:api')
+    implementation project(':gateway:implementation')
+    implementation project(':usecase:api')
+    implementation project(':usecase:implementation')
+    implementation project(':rest')
+    implementation project(':domain')
+
+    def deps = rootProject.ext.deps
+
+    implementation deps.spark
+    implementation deps.log4j
+    implementation deps.h2
+}

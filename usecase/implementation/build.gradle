@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(':usecase:api')
+    implementation project(':gateway:api')
+    implementation project(':domain')
+    implementation project(':utility')
+}

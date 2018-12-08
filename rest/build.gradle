@@ -1,0 +1,9 @@
+dependencies {
+    implementation project(':usecase:api')
+    implementation project(':utility')
+
+    def deps = rootProject.ext.deps
+
+    implementation deps.spark
+    implementation deps.jackson
+}
