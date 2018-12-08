@@ -8,4 +8,3 @@ include 'usecase:implementation'
 include 'rest'
 include 'main'
 include 'utility'
-

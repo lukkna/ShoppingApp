@@ -1,7 +1,9 @@
 apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 group 'eu.shopping.app'
 version '1.0-SNAPSHOT'
+mainClassName = 'eu.shopping.app.main.Main'
 
 dependencies {
     implementation project(':domain')
