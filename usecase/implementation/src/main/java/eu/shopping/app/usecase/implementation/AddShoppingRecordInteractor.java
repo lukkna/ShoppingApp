@@ -4,6 +4,7 @@ import eu.shopping.app.gateway.api.ShoppingGateway;
 import eu.shopping.app.usecase.api.AddShoppingRecordUseCase;
 import eu.shopping.app.usecase.api.entity.BoundaryShoppingRecord;
 import eu.shopping.app.usecase.implementation.converter.ShoppingRecordB2D;
+import eu.shopping.app.usecase.implementation.util.StorageExceptionRethrower;
 
 public class AddShoppingRecordInteractor implements AddShoppingRecordUseCase {
     private final ShoppingGateway gateway;
@@ -16,7 +17,7 @@ public class AddShoppingRecordInteractor implements AddShoppingRecordUseCase {
 
     @Override
     public void run(BoundaryShoppingRecord record) {
-        converter.convert(record).ifPresent(gateway::add);
-        //todo response about unsuccessful op
+        StorageExceptionRethrower.run(() ->
+                gateway.add(converter.convert(record).orElse(null)));
     }
 }

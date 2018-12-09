@@ -3,9 +3,9 @@ package eu.shopping.app.rest.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import eu.shopping.app.rest.exception.JsonParsingException;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
@@ -18,21 +18,19 @@ public class JsonSerializer {
         mapper = setUpMapper();
     }
 
-    public Optional<String> toJson(Object originalObject) {
+    public String toJson(Object originalObject) {
         try {
-            return Optional.of(mapper.writeValueAsString(originalObject));
+            return mapper.writeValueAsString(originalObject);
         } catch (JsonProcessingException e) {
-            //todo handle
-            return Optional.empty();
+            throw new JsonParsingException(e);
         }
     }
 
-    public <T> Optional<T> toObject(String body, Class<T> clazz) {
+    public <T> T toObject(String body, Class<T> clazz) {
         try {
-            return Optional.of(mapper.readValue(body, clazz));
+            return mapper.readValue(body, clazz);
         } catch (IOException e) {
-            //todo handle
-            return Optional.empty();
+            throw new JsonParsingException(e);
         }
     }
 

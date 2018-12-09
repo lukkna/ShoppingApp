@@ -88,13 +88,4 @@ public class QueryBuilder {
     private static String arrayToString(String[] like, String separator) {
         return String.join(separator, like);
     }
-
-    public static class QueryPartsBuilder {
-        public static String castToInt(String column, String as) {
-            return String.format("CAST(%s AS INT) AS %s", column, as);
-        }
-
-        private QueryPartsBuilder() {
-        }
-    }
 }

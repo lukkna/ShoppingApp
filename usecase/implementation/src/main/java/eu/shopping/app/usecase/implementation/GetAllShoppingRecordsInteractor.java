@@ -4,6 +4,7 @@ import eu.shopping.app.gateway.api.ShoppingGateway;
 import eu.shopping.app.usecase.api.GetAllShoppingRecordsUseCase;
 import eu.shopping.app.usecase.api.entity.BoundaryShoppingRecord;
 import eu.shopping.app.usecase.implementation.converter.ShoppingRecordD2B;
+import eu.shopping.app.usecase.implementation.util.StorageExceptionRethrower;
 
 import java.util.List;
 
@@ -18,6 +19,6 @@ public class GetAllShoppingRecordsInteractor implements GetAllShoppingRecordsUse
 
     @Override
     public List<BoundaryShoppingRecord> run() {
-        return converter.convert(gateway.get());
+        return StorageExceptionRethrower.run(() -> converter.convert(gateway.get()));
     }
 }

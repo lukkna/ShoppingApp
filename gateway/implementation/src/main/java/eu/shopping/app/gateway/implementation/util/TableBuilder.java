@@ -62,7 +62,7 @@ public class TableBuilder {
     }
 
     public TableBuilder timestamp(String column) {
-        return append(column + " TIMESTAMP WITH TIME ZONE NOT NULL,");//todo
+        return append(column + " TIMESTAMP WITH TIME ZONE NOT NULL,");
     }
 
     private TableBuilder append(String toAppend) {

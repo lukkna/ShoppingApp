@@ -1,5 +1,7 @@
 package eu.shopping.app.gateway.implementation.db;
 
+import eu.shopping.app.gateway.api.exception.StorageException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +22,7 @@ public class Statement {
             parameter.accept(new Parameter(preparedStatement));
             return executeForList(resultsConsumer, preparedStatement);
         } catch (SQLException e) {
-//            throw new StorageException(e);
-            return null;
-
+            throw new StorageException(e);
         }
     }
 
@@ -30,8 +30,7 @@ public class Statement {
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             return executeForList(resultsConsumer, preparedStatement);
         } catch (SQLException e) {
-//            throw new StorageException(e);
-            return null;
+            throw new StorageException(e);
         }
     }
 
@@ -49,8 +48,7 @@ public class Statement {
             parameter.accept(new Parameter(preparedStatement));
             return executeForSingle(resultsConsumer, preparedStatement);
         } catch (SQLException e) {
-//            throw new StorageException(e);
-            return Optional.empty();
+            throw new StorageException(e);
         }
     }
 
@@ -67,8 +65,7 @@ public class Statement {
             parameter.accept(new Parameter(preparedStatement));
             preparedStatement.execute();
         } catch (SQLException e) {
-//            throw new StorageException(e);
-            System.out.println();
+            throw new StorageException(e);
         }
     }
 
@@ -78,9 +75,7 @@ public class Statement {
             preparedStatement.executeUpdate();
             return executeForUpdate(preparedStatement);
         } catch (SQLException e) {
-//            throw new StorageException(e);
-            return 0;
-
+            throw new StorageException(e);
         }
     }
 
@@ -88,9 +83,7 @@ public class Statement {
         try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
             if (generatedKeys.next())
                 return (int) generatedKeys.getLong(1);
-//            throw new StorageException("No update key");
-            return 0;
-
+            throw new StorageException("No update key");
         }
     }
 
@@ -107,7 +100,7 @@ public class Statement {
             try {
                 preparedStatement.setInt(index.getAndIncrement(), param);
             } catch (SQLException e) {
-//                throw new StorageException(e);
+                throw new StorageException(e);
             }
             return this;
         }
@@ -116,7 +109,7 @@ public class Statement {
             try {
                 preparedStatement.setString(index.getAndIncrement(), param);
             } catch (SQLException e) {
-//                throw new StorageException(e);
+                throw new StorageException(e);
             }
             return this;
         }
@@ -125,7 +118,7 @@ public class Statement {
             try {
                 preparedStatement.setDouble(index.getAndIncrement(), param);
             } catch (SQLException e) {
-//                throw new StorageException(e);
+                throw new StorageException(e);
             }
             return this;
         }
@@ -134,7 +127,7 @@ public class Statement {
             try {
                 preparedStatement.setTimestamp(index.getAndIncrement(), param);
             } catch (SQLException e) {
-//                throw new StorageException(e);
+                throw new StorageException(e);
             }
             return this;
         }
@@ -146,7 +139,7 @@ public class Statement {
                         connection.createArrayOf("VARCHAR", param)
                 );
             } catch (SQLException e) {
-//                throw new StorageException(e);
+                throw new StorageException(e);
             }
             return this;
         }

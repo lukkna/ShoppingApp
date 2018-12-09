@@ -1,5 +1,7 @@
 package eu.shopping.app.gateway.implementation.db;
 
+import eu.shopping.app.gateway.api.exception.StorageException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,9 +28,9 @@ public class ConnectionProvider {
         try {
             connection = DriverManager.getConnection("jdbc:h2:file:./shopping", "", "");
             connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+            connection.setAutoCommit(true);
         } catch (SQLException e) {
-            //todo handle
-            System.out.printf("");
+            throw new StorageException(e);
         }
     }
 }

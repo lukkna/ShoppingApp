@@ -6,6 +6,7 @@ import eu.shopping.app.usecase.api.UpdateShoppingRecordUseCase;
 import eu.shopping.app.usecase.api.entity.BoundaryShoppingRecord;
 import eu.shopping.app.usecase.implementation.converter.ShoppingRecordB2D;
 import eu.shopping.app.usecase.implementation.converter.ShoppingRecordD2B;
+import eu.shopping.app.usecase.implementation.util.StorageExceptionRethrower;
 
 public class UpdateShoppingRecordInteractor implements UpdateShoppingRecordUseCase {
     private final ShoppingGateway gateway;
@@ -22,6 +23,10 @@ public class UpdateShoppingRecordInteractor implements UpdateShoppingRecordUseCa
 
     @Override
     public BoundaryShoppingRecord run(BoundaryShoppingRecord updated) {
+        return StorageExceptionRethrower.run(() -> execute(updated));
+    }
+
+    private BoundaryShoppingRecord execute(BoundaryShoppingRecord updated) {
         ShoppingRecord input = converterB2D.convert(updated).orElse(null);
         ShoppingRecord output = gateway.update(input);
         return converterD2B.convert(output).orElse(null);
