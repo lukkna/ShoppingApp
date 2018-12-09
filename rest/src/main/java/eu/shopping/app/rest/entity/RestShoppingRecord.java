@@ -6,23 +6,26 @@ public class RestShoppingRecord {
     private final String item;
     private final Double price;
     private final String buyer;
-    private final Long id;
-
-    public RestShoppingRecord(String item, Double price, String buyer, Long id) {
-        this.item = item;
-        this.price = price;
-        this.buyer = buyer;
-        this.id = id;
-    }
+    private final Long timestamp;
 
     public RestShoppingRecord(@JsonProperty("item") String item,
                               @JsonProperty("price") Double price,
-                              @JsonProperty("buyer") String buyer) {
+                              @JsonProperty("buyer") String buyer,
+                              @JsonProperty("timestamp") Long timestamp) {
         this.item = item;
         this.price = price;
         this.buyer = buyer;
-        id = null;
+        this.timestamp = timestamp;
     }
+
+//    public RestShoppingRecord(@JsonProperty("item") String item,
+//                              @JsonProperty("price") Double price,
+//                              @JsonProperty("buyer") String buyer) {
+//        this.item = item;
+//        this.price = price;
+//        this.buyer = buyer;
+//        timestamp = null;
+//    }
 
     public String getItem() {
         return item;
@@ -36,7 +39,7 @@ public class RestShoppingRecord {
         return buyer;
     }
 
-    public Long getId() {
-        return id;
+    public Long getTimestamp() {
+        return timestamp;
     }
 }

@@ -8,4 +8,8 @@ public interface ShoppingGateway {
     void add(ShoppingRecord record);
 
     List<ShoppingRecord> get();
+
+    void delete(long id);
+
+    ShoppingRecord update(ShoppingRecord updated);
 }

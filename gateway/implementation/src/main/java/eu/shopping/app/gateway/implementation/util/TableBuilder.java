@@ -61,7 +61,7 @@ public class TableBuilder {
         return append(column + " DOUBLE NOT NULL,");
     }
 
-    public TableBuilder dateTime(String column) {
+    public TableBuilder timestamp(String column) {
         return append(column + " TIMESTAMP WITH TIME ZONE NOT NULL,");//todo
     }
 

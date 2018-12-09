@@ -4,4 +4,8 @@ public interface ShoppingUseCaseFactory {
     AddShoppingRecordUseCase addShoppingRecordUseCase();
 
     GetAllShoppingRecordsUseCase getAllShoppingRecordsUseCase();
+
+    UpdateShoppingRecordUseCase updateShoppingRecordUseCase();
+
+    DeleteShoppingRecordUseCase removeShoppingRecordUseCase();
 }

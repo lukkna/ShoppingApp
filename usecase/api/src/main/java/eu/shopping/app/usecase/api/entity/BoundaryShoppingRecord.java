@@ -4,20 +4,20 @@ public class BoundaryShoppingRecord {
     private final String item;
     private final Double price;
     private final String buyer;
-    private final Long id;
+    private final Long timestamp;
 
-    public BoundaryShoppingRecord(String item, Double price, String buyer, Long id) {
+    public BoundaryShoppingRecord(String item, Double price, String buyer, Long timestamp) {
         this.item = item;
         this.price = price;
         this.buyer = buyer;
-        this.id = id;
+        this.timestamp = timestamp;
     }
 
     public BoundaryShoppingRecord(String item, Double price, String buyer) {
         this.item = item;
         this.price = price;
         this.buyer = buyer;
-        id = null;
+        timestamp = null;
     }
 
     public String getItem() {
@@ -32,7 +32,7 @@ public class BoundaryShoppingRecord {
         return buyer;
     }
 
-    public Long getId() {
-        return id;
+    public Long getTimestamp() {
+        return timestamp;
     }
 }

@@ -1,9 +1,7 @@
 package eu.shopping.app.usecase.implementation;
 
 import eu.shopping.app.gateway.api.ShoppingGateway;
-import eu.shopping.app.usecase.api.AddShoppingRecordUseCase;
-import eu.shopping.app.usecase.api.GetAllShoppingRecordsUseCase;
-import eu.shopping.app.usecase.api.ShoppingUseCaseFactory;
+import eu.shopping.app.usecase.api.*;
 import eu.shopping.app.usecase.implementation.converter.ShoppingRecordB2D;
 import eu.shopping.app.usecase.implementation.converter.ShoppingRecordD2B;
 
@@ -28,5 +26,15 @@ public class ShoppingUseCaseFactoryImpl implements ShoppingUseCaseFactory {
     @Override
     public GetAllShoppingRecordsUseCase getAllShoppingRecordsUseCase() {
         return new GetAllShoppingRecordsInteractor(gateway, converterD2B);
+    }
+
+    @Override
+    public UpdateShoppingRecordUseCase updateShoppingRecordUseCase() {
+        return new UpdateShoppingRecordInteractor(gateway, converterD2B, converterB2D);
+    }
+
+    @Override
+    public DeleteShoppingRecordUseCase removeShoppingRecordUseCase() {
+        return new DeleteShoppingRecordInteractor(gateway);
     }
 }

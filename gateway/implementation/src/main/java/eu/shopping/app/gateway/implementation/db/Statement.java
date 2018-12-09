@@ -68,6 +68,7 @@ public class Statement {
             preparedStatement.execute();
         } catch (SQLException e) {
 //            throw new StorageException(e);
+            System.out.println();
         }
     }
 

@@ -5,5 +5,5 @@ public class DbConstantsProvider {
     public static final String ITEM_NAME = "ITEM_NAME";
     public static final String ITEM_PRICE = "ITEM_PRICE";
     public static final String BUYER_NAME = "BUYER_NAME";
-    public static final String DATE_TIME = "DATE_TIME";
+    public static final String TIMESTAMP = "TIMESTAMP";
 }

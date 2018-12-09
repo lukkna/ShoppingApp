@@ -30,8 +30,12 @@ public class QueryBuilder {
         return new QueryBuilder("INSERT INTO " + table + "(" + arrayToString(insert, ",") + ")" + values(insert.length));
     }
 
-    public static QueryBuilder orderBy(String... fields) {
-        return new QueryBuilder(" ORDER BY " + arrayToString(fields, ","));
+    public static QueryBuilder delete() {
+        return new QueryBuilder("DELETE ");
+    }
+
+    public QueryBuilder orderBy(String... fields) {
+        return append("ORDER BY " + arrayToString(fields, ","));
     }
 
     public QueryBuilder from(String... from) {

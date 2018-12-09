@@ -7,6 +7,6 @@ import eu.shopping.app.utility.Converter;
 public class ShoppingRecordD2B extends Converter<ShoppingRecord, BoundaryShoppingRecord> {
     @Override
     protected BoundaryShoppingRecord process(ShoppingRecord data) {
-        return new BoundaryShoppingRecord(data.getItem(), data.getPrice(), data.getBuyer(), data.getId());
+        return new BoundaryShoppingRecord(data.getItem(), data.getPrice(), data.getBuyer(), data.getTimestamp());
     }
 }
