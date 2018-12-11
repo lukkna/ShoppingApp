@@ -5,6 +5,7 @@ import spark.ExceptionHandler;
 import spark.Response;
 import spark.Service;
 
+import static eu.shopping.app.main.CorsHeadersProvider.CORS_HEADERS;
 import static eu.shopping.app.rest.util.RestConstants.CONTENT_TYPE_JSON;
 import static java.lang.String.format;
 import static spark.Service.ignite;
@@ -22,6 +23,7 @@ public class ShoppingApp {
         service.port(4567);
         service.exception(RuntimeException.class, createExceptionHandler());
         RoutesBuilder.setService(service).attachRoutes();
+        service.after((request, response) -> CORS_HEADERS.forEach(response::header));
         service.awaitInitialization();
     }
 
