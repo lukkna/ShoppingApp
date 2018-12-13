@@ -3,10 +3,7 @@ package eu.shopping.app.main;
 import eu.shopping.app.main.builder.ShoppingUseCaseFactoryBuilder;
 import eu.shopping.app.rest.converter.ShoppingRecordB2R;
 import eu.shopping.app.rest.converter.ShoppingRecordR2B;
-import eu.shopping.app.rest.route.GetRecordsRoute;
-import eu.shopping.app.rest.route.PostRecordsRoute;
-import eu.shopping.app.rest.route.PutRecordRoute;
-import eu.shopping.app.rest.route.RemoveRecordRoute;
+import eu.shopping.app.rest.route.*;
 import eu.shopping.app.rest.util.JsonSerializer;
 import eu.shopping.app.usecase.api.ShoppingUseCaseFactory;
 import spark.Service;
@@ -33,6 +30,7 @@ public class RoutesBuilder {
     }
 
     public void attachRoutes() {
+        service.options("*", new OptionsRoute());
         service.path(SHOPPING_RECORDS, () -> {
             service.post("", new PostRecordsRoute(serializer, factory, converterR2B));
             service.get("", new GetRecordsRoute(serializer, factory, converterB2R));
